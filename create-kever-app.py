@@ -133,7 +133,7 @@ import plotly.express as px     # Timbercut_landerR
 
 Timbercut_lander= pd.read_excel("Excess Green index etc.xlsx", index_col=0,# owv doubles in German state
                                 sheet_name="timbercuttingbylander2", engine='openpyxl',verbose=1,skiprows=1 ) #na_values="",
-#      Timbercut_lander= pd.read_excel( r"C:\Users\VanOp\Documents\Notebooks\streamlit\41261-0010_Holzeinschlag Bundesländer, Jahre, Holzartengruppen.xlsx", sheet_name="41261-0010", engine='openpyxl',verbose=1,skiprows=4,skipfooter=36, na_values="-", index_col=[0,1]); #
+#      Timbercut_lander= pd.read_excel( r"C:\Users\*\Documents\Notebooks\streamlit\41261-0010_Holzeinschlag Bundesländer, Jahre, Holzartengruppen.xlsx", sheet_name="41261-0010", engine='openpyxl',verbose=1,skiprows=4,skipfooter=36, na_values="-", index_col=[0,1]); #
 Timbercut_lander= Timbercut_lander.dropna()
 if agree: st.dataframe(Timbercut_lander )
 Timbercut_lander.Year= pd.to_datetime( Timbercut_lander.Year,format="%Y", errors="ignore") # yearfirst=True,Year
@@ -279,11 +279,11 @@ with tab4:
     print(woodedarea_lander.columns)
 
     st.markdown("#### Summed losses for all damages in 2019 and 2020 " ) #  ? due to insects 
-    Kuub= pd.read_csv(r"C:\Users\VanOp\Documents\Notebooks\streamlit\Wood_lost_2019_2020_m3.csv", sep=",", encoding="UTF-8", engine="python",decimal=".", index_col=0) #UTF-8
+    Kuub= pd.read_csv(r"Wood_lost_2019_2020_m3.csv", sep=",", encoding="UTF-8", engine="python",decimal=".", index_col=0) #UTF-8
     st.dataframe(Kuub.style.background_gradient(axis=0, cmap="YlOrRd", subset="PCT") , width=1150,)
 
     import geopandas as gpd    #Bundeslandergrenzen_2014_mit_Einwohnerzahl_shp\Bundesländer_2014_ew.shp
-    bundeslander= gpd.read_file(r"C:\Users\VanOp\Documents\Notebooks\streamlit\tufts-germany-states-15-shapefile.zip", lw=0.25,  )
+    bundeslander= gpd.read_file(r"tufts-germany-states-15-shapefile.zip", lw=0.25,  )
     bundeslander.crs="EPSG:4326"   #st.write("bundeslander.crs", bundeslander.crs)          #GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",
     ax = bundeslander.plot(column="StateName1",legend=True, categorical=True,figsize=(7,7), legend_kwds={'loc':'center left','bbox_to_anchor':(0.95,0.5),}, cmap="tab20b") #,figsize=(7, 6)
     ax.set_axis_off()
@@ -307,7 +307,7 @@ with tab4:
     with losscol2: st.pyplot( woodedarea_plot.figure )
     with losscol2b: st.pyplot( Forest_area_PCT_diff_plot.figure )
   
-    # Timbercut_causeB2018All_statecoordin= pd.read_excel(r"C:\Users\VanOp\Documents\Notebooks\streamlit\Timbercut_causeB2018All_statecoordin.xlsx")  # this makes just circle markers...
+    # Timbercut_causeB2018All_statecoordin= pd.read_excel(r"C:\Users\*\Documents\Notebooks\streamlit\Timbercut_causeB2018All_statecoordin.xlsx")  # this makes just circle markers...
     # st.dataframe(Timbercut_causeB2018All_statecoordin, )
     # gdf = gpd.GeoDataFrame( Timbercut_causeB2018All_statecoordin,geometry=gpd.points_from_xy(Timbercut_causeB2018All_statecoordin.Longitude, Timbercut_causeB2018All_statecoordin.Latitude) )#geometry=gpd.points_from_xy(Timbercut_causeB2018All_statecoordin.Longitude, Timbercut_causeB2018All_statecoordin.Latitude)
     # st.write("gdf.crs", gdf.crs)
@@ -327,13 +327,13 @@ with tab5:
     st.image(["./figs/Timbercutting_cause_and_tree_species_95_0.png"] ,width=800, caption=["More than 2/3 of wood damaged by insects fails to get good price offerings"], output_format="png")
     st.image(["./figs/Timbercutting_cause_and_tree_species_103_0.png"] ,width=1500, caption=["Damaged timber by insects vs. the total timber loss by any cause of damage"], output_format="png")
 
-#   cd C:\Users\vanop\Documents\Notebooks\streamlit   streamlit run create-kever-app.py --global.dataFrameSerialization="legacy"
+#   cd C:\Users\*\Documents\Notebooks\streamlit   streamlit run create-kever-app.py --global.dataFrameSerialization="legacy"
 # st.map(filtered_data)                                                    https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
 # startdate and enddate must follow Timestamp type
 # starttime and endtime must follow datetime.time type
 
 # cd c:/Users/*/Documents/Notebooks/streamlit/
-# python -m streamlit run c:/Users/VanOp/Documents/Notebooks/streamlit/create-kever-app.py
+# python -m streamlit run c:/Users/*/Documents/Notebooks/streamlit/create-kever-app.py
 
 # create a new repository on the command line
 
