@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import os    # echo %path% 
-os.add_dll_directory("C:\ProgramData\Anaconda3\condabin") # issue in Python > 3.8 with Windows, dll's are only loaded from trusted locations https://docs.python.org/3/whatsnew/3.8.html#ctypes This can be fixed by adding the dll path using os.add_dll_directory("PATH_TO_DLL")
+# os.add_dll_directory("C:\ProgramData\Anaconda3\condabin") # issue in Python > 3.8 with Windows, dll's are only loaded from trusted locations https://docs.python.org/3/whatsnew/3.8.html#ctypes This can be fixed by adding the dll path using os.add_dll_directory("PATH_TO_DLL")
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -39,7 +39,7 @@ colorrange: List[str] =["sandybrown", "silver", "olivedrab", "slateblue"]     # 
 tab1,tab2,tab3, tab4,tab5 = st.tabs( ["**Forced timbercuttings in Germany by cause of damage**", "**Number of timbercuttings by tree type and by federal state**", "**Insect caused damage**","**Forested area lost 2019-2021**",
                 "**Marketability of timber: standing vs. felled**"])
 
-Timbercut_causeB = pd.read_csv(r"C:\\Users\vanop\Documents\Notebooks\XGBoost\Rainfall Kerala Flood\Data\41261-0012Schadholzeinschlag_Bundesländer_Einschlagsursache.csv", sep=";",skiprows=6, engine="python", encoding="ANSI", skipfooter=4, decimal=",")# , nrows=nrows
+Timbercut_causeB = pd.read_csv(r"41261-0012Schadholzeinschlag_Bundesländer_Einschlagsursache.csv", sep=";",skiprows=6, engine="python", encoding="ANSI", skipfooter=4, decimal=",")# , nrows=nrows
 Timbercut_causeB=Timbercut_causeB[Timbercut_causeB.Owner=="Insgesamt"]  # no Privat data etc. needed
 Timbercut_causeB=Timbercut_causeB.drop(columns= "Owner", axis=1)
 st.dataframe( Timbercut_causeB, width=1600,)
@@ -131,7 +131,7 @@ df2 =df2.loc[:, ["Year","German State","Value"]]
 
 import plotly.express as px     # Timbercut_landerR
 
-Timbercut_lander= pd.read_excel("C:\\Users\\vanop\\Documents\\Notebooks\\XGBoost\Rainfall Kerala Flood\Data\\Excess Green index etc.xlsx", index_col=0,# owv doubles in German state
+Timbercut_lander= pd.read_excel("Excess Green index etc.xlsx", index_col=0,# owv doubles in German state
                                 sheet_name="timbercuttingbylander2", engine='openpyxl',verbose=1,skiprows=1 ) #na_values="",
 #      Timbercut_lander= pd.read_excel( r"C:\Users\VanOp\Documents\Notebooks\streamlit\41261-0010_Holzeinschlag Bundesländer, Jahre, Holzartengruppen.xlsx", sheet_name="41261-0010", engine='openpyxl',verbose=1,skiprows=4,skipfooter=36, na_values="-", index_col=[0,1]); #
 Timbercut_lander= Timbercut_lander.dropna()
@@ -161,7 +161,7 @@ with tab2:
     st.plotly_chart(fig, use_container_width=True,)
 
 
-# Using no longer Timbercut_landerR, but df for insect damage  #df
+# Using no longer Timbercut_landerR, but df for insect damage 
 df.Value =df.Value.astype( "float32") 
 df= df[df["Cause"] == "Insects"]
 df= df[df["Tree_type"] != "Total"]
@@ -180,7 +180,7 @@ print("dfX1.info():", dfX1.info(verbose=True))
 
 if agree: st.write(dfX1.head(1))
 # .dt.year sample(12)
-dfX2= dfX1.drop( columns="Cause", axis=1)  #[~dfX["Cause"] ]  # exclusion cause
+dfX2= dfX1.drop( columns="Cause", axis=1)  #  # exclusion of cause
 #dfX = dfX.tz_localize(pytz.timezone('US/Eastern'))
 #dfX["Year"]= dfX["Year"].dt.tz_convert("UTC")
 print("dfX2.info():", dfX2.info(verbose=True)) #st.write(dfX2.info())
@@ -274,7 +274,7 @@ with tab3:
 with tab4:
     st.subheader("Forest area lost in the period 2019-2021") 
     st.markdown("The relation between forested area in hectares, *Waldfläche in 2016*, and the amount of timber in m³, was made by calculating a value for the national wooddensity using the total value of Germany's standing forest in m³. ")
-    woodedarea_lander= pd.read_excel("C:\\Users\\vanop\\Documents\\Notebooks\\XGBoost\Rainfall Kerala Flood\Data\\Excess Green index etc.xlsx",  index_col=0,# =bundesland / German state
+    woodedarea_lander= pd.read_excel("Excess Green index etc.xlsx", index_col=0,  # =bundesland / German state
                                 sheet_name="woodedarea", engine='openpyxl',na_values="",verbose=1,skiprows=5, skipfooter=1 ) 
     print(woodedarea_lander.columns)
 
@@ -332,10 +332,10 @@ with tab5:
 # startdate and enddate must follow Timestamp type
 # starttime and endtime must follow datetime.time type
 
-# cd c:/Users/VanOp/Documents/Notebooks/streamlit/
+# cd c:/Users/*/Documents/Notebooks/streamlit/
 # python -m streamlit run c:/Users/VanOp/Documents/Notebooks/streamlit/create-kever-app.py
 
-# …or create a new repository on the command line
+# create a new repository on the command line
 
 # echo "# timbercuttings_Germany" >> README.md
 # git init
