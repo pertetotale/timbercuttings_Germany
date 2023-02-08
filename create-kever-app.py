@@ -39,7 +39,7 @@ colorrange: List[str] =["sandybrown", "silver", "olivedrab", "slateblue"]     # 
 tab1,tab2,tab3, tab4,tab5 = st.tabs( ["**Forced timbercuttings in Germany by cause of damage**", "**Number of timbercuttings by tree type and by federal state**", "**Insect caused damage**","**Forested area lost 2019-2021**",
                 "**Marketability of timber: standing vs. felled**"])
 
-Timbercut_causeB = pd.read_csv(r"41261-0012Schadholzeinschlag_Bundesländer_Einschlagsursache.csv", sep=";",skiprows=6, engine="python", encoding="ANSI", skipfooter=4, decimal=",")# , nrows=nrows
+Timbercut_causeB = pd.read_csv(r"41261-0012Schadholzeinschlag_Bundesländer_Einschlagsursache.csv", sep=";",skiprows=6, engine="python", encoding="cp1252", skipfooter=4, decimal=",")# , nrows=nrows
 Timbercut_causeB=Timbercut_causeB[Timbercut_causeB.Owner=="Insgesamt"]  # no Privat data etc. needed
 Timbercut_causeB=Timbercut_causeB.drop(columns= "Owner", axis=1)
 st.dataframe( Timbercut_causeB, width=1600,)
