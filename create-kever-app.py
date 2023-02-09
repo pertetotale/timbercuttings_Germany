@@ -14,6 +14,11 @@ alt.themes.register("streamlit_alt", streamlit_theme_alt) #alt.themes.register("
 alt.themes.enable("streamlit_alt")
 from typing import Dict, List, Tuple, Sequence
 
+import shapely
+import warnings
+from shapely.errors import ShapelyDeprecationWarning
+warnings.filterwarnings("ignore", category=ShapelyDeprecationWarning) 
+
 st.set_page_config(layout="wide", page_title="Forest tree loss due to damage in Germany by various kinds of damage", page_icon ="🧊", menu_items={
         'About': "#### Overview of various kinds of damage to cause forest tree losses in Germany. Insects have become a huge contributor to timber losses over the last years. \
         More info: Statistisches Bundesamt (Destatis), https://www.destatis.de/EN/Themes/Economic-Sectors-Enterprises/Agriculture-Forestry-Fisheries/Forestry-Wood/, http://umwelt.nrw.de, http://www.waldinfo.nrw.de/"
