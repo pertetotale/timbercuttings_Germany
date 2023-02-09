@@ -294,13 +294,15 @@ with tab4:
     ax.set_axis_off()
 
     # merge woodedarea_lander + bundeslander
-    woodedarea_landerMerge =pd.merge(bundeslander, woodedarea_lander, left_on="StateName1", right_index=True ) ; 
+    woodedarea_landerMerge =pd.merge(bundeslander, woodedarea_lander, left_on="StateName1", right_index=True )
+    woodedarea_landerMerge.crs="EPSG:4326"
     print(woodedarea_landerMerge[["StateName1", "Waldfläche2020","Forest_PCT2020"]].sample(8) )
     #st.dataframe(woodedarea_landerMerge[["StateName1", "Waldfläche2020","Forest_PCT2020"]].sample(8) )  #
 
     st.markdown("#### Percentage of forested area by State", )
     woodedarea_plot= woodedarea_landerMerge.plot(column='Forest_PCT2020',scheme='equal_interval',k=9, cmap='YlGn', legend=True,lw=0.5,figsize=(6,6),legend_kwds={'loc':'center left','bbox_to_anchor':(0.95,0.5),'fmt':"{:.1f}", }); 
     woodedarea_plot.set_axis_off() # Forest_area_PCT_diff = difference betw 2020 and end 2021/2022
+        
     Forest_area_PCT_diff_plot =woodedarea_landerMerge.iloc[[0,1,4,5,6,7,8,9,10,11,12,13,14,15],:].plot(column='Forest_area_PCT_diff',scheme='equal_interval',k=9,cmap='RdYlGn',legend=True,lw=0.5,figsize=(6,6),legend_kwds={'loc':'center left','bbox_to_anchor':(0.95,0.5),'fmt':"{:.1f}", });
     Forest_area_PCT_diff_plot.set_axis_off()  #vmin=-5.9,vmax=3,
     st.markdown("The 3rd map shows the difference in percentages of forest area gained or lost between 2020 and the end of 2021/2022. This is conform the notion that the spruce beetles are moving to more Northern located habitats.") 
@@ -329,7 +331,7 @@ with tab5:
     st.subheader("**Marketable timber: standing or felled**") 
     st.markdown("Merchantable Timber means standing trees by species and product which are because of size and quality, salable within a reasonable time period from the subject lands.")
     st.markdown("The Timber in this case has already been felled. More than 2/3 of wood damaged by insects fails to get good price offerings. As a result, much of this timber might end up as wood chips for power production.")
-    st.image(["./figs/Timbercutting_cause_and_tree_species_95_0.png"] ,width=800, caption=["More than 2/3 of wood damaged by insects fails to get good price offerings"], output_format="png")
+    st.image(["./figs/Timbercutting_cause_and_tree_species_95_0.png"] ,width=700, caption=["More than 2/3 of wood damaged by insects fails to get good price offerings"], output_format="png")
     st.image(["./figs/Timbercutting_cause_and_tree_species_103_0.png"] ,width=1500, caption=["Damaged timber by insects vs. the total timber loss by any cause of damage"], output_format="png")
 
 #   cd C:\Users\*\Documents\Notebooks\streamlit   streamlit run create-kever-app.py --global.dataFrameSerialization="legacy"
