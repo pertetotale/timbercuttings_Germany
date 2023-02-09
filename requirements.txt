@@ -1,6 +1,6 @@
 altair==4.2.0
 geopandas==0.10.2
-shapely==1.7.0   # for gpd 0.10
+shapely==1.8.0   # for gpd 0.10
 mapclassify>=2.4.0
 leafmap==0.16.1
 matplotlib==3.5.2
