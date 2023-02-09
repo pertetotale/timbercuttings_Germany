@@ -1,14 +1,15 @@
 altair==4.2.0
 geopandas==0.10.2
+shapely==1.7.0   # for gpd 0.10
 mapclassify>=2.4.0
 leafmap==0.16.1
 matplotlib==3.5.2
-pandas==1.3.5  #1.4.3
+pandas==1.3.5    #1.4.3
 openpyxl==3.0.5
 Pillow==9.4.0
 plotly==5.13.0
 streamlit==1.17
-typing==3.7.4.3 #3.10.0.0
+typing==3.7.4.3   #3.10.0.0
 #from streamlit_theme_alt import streamlit_theme_alt
 #alt.themes.register("streamlit_alt", streamlit_theme_alt) 
 #alt.themes.enable("streamlit_alt")
