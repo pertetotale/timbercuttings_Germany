@@ -5,9 +5,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#import pytz
 #plt.style.use('seaborn-v0_8-ticks') 
-# %config InlineBackend.figure_format = 'retina';
+
 import altair as alt
 from streamlit_theme_alt import streamlit_theme_alt
 alt.themes.register("streamlit_alt", streamlit_theme_alt) #alt.themes.register("my_custom_theme", urban_theme) 
@@ -33,9 +32,9 @@ So, these coniferous trees have been weakened by these poor conditions, which sl
     Hence we notice more forced timbercuttings in Central Germany the year(s) after a dry season.")
 
 States: List[str] =['Baden-Württemberg', 'Bayern', 'Berlin', 'Brandenburg', 'Bremen','Hamburg', 'Hessen', 'Mecklenburg-Vorpommern', 'Niedersachsen',
-           'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen','Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'] # so without! Total
+           'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Sachsen','Sachsen-Anhalt', 'Schleswig-Holstein', 'Thüringen'] # so without Total
 cities: List[str]= ['Berlin', 'Bremen','Hamburg']
-Causes: List[str] =['Insects', "Wind/Storm", "Snow/Ice", "Drought",'Total']  #"unknown",
+Causes: List[str] =['Insects', "Wind/Storm", "Snow/Ice", "Drought","Other",'Total']  # "unknown" for nan
 Tree_types: List[str] =['Oak and red oak', 'Beech and other deciduous wood','Pine and larch', 'Spruce, fir,Douglas fir and other coniferous trees','Total']
 totalcolorrange: List[str] =["sandybrown", "silver", "olivedrab", "slateblue", "black"] 
 Tree_domain: List[str] =['Oak and red oak', 'Beech and other deciduous wood','Pine and larch', 'Spruce, fir,Douglas fir and other coniferous trees'] # so without Total
@@ -87,7 +86,7 @@ def load_data( df):
 # dfB"
 
 # Pick German State / cause of damage / Tree_type
-state_filter = st.sidebar.selectbox('Pick **Federal State**', States , index=10)  # 10= RLP
+state_filter = st.sidebar.selectbox('Pick **Federal State**', States, index=10)  # 10= RLP
 cause_filter = st.sidebar.radio('Pick **Cause of damage**', Causes )
 Tree_filter = st.sidebar.radio('Pick **Tree type**', Tree_types, index=4 )
 agree = st.sidebar.checkbox('Show **Extra data**', value=False, key="extra_dataframes" )
