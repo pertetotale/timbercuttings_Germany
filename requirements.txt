@@ -1,3 +1,4 @@
+pip>=23.0
 altair==4.2.2
 geopandas==0.10.2
 shapely==1.8.0   # for gpd 0.10
