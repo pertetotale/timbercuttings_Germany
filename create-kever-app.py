@@ -71,7 +71,7 @@ df['Cause'] = df.Cause.replace( np.nan, "unknown")
 
 print("df.head():", df.head() )    # info= None
 
-@st.cache( allow_output_mutation=True)
+@st.cache_resource( ) #allow_output_mutation=True out 1.17->1.20
 def load_data( df):
     # df['date'] = df.Year.astype('datetime64["Y"]')
     data= df  #.drop(columns="Owner", axis=1)
@@ -149,7 +149,6 @@ Timbercut_landerR= Timbercut_lander.reset_index()
 
 with tab2:
     st.subheader('Number of timbercuttings by tree type and by federal state')
-
     if agree: st.dataframe( Timbercut_landerR, width=1600, height=600)
 
     fig = px.bar(Timbercut_landerR, x=Timbercut_landerR.Year.dt.year,  y=["Oak", "Beech and other deciduous woods","Pine and larch", "Spruce, fir,douglas fir and other coniferous wood"],  #
